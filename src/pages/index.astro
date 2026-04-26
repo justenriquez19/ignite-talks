@@ -1,0 +1,274 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/ui/Navbar.astro";
+import TalkCard from "../components/ui/TalkCard.astro";
+import Icon from "../components/ui/Icon.astro";
+import { getCollection } from "astro:content";
+
+const talks = (await getCollection("talks")).sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+);
+---
+
+<BaseLayout title="IGNITE TALKS">
+  <Navbar />
+
+  <main class="landing" id="landing">
+    <!-- Hero Section -->
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <div class="hero-content container">
+        <div class="hero-glow" aria-hidden="true"></div>
+
+        <h1 id="hero-title" class="hero-title animate-fade-up">
+          <span class="text-gradient-fire">IGNITE</span>
+          <span class="hero-talks">TALKS</span>
+        </h1>
+
+        <p class="hero-tagline animate-fade-up stagger-1">
+          Presentaciones que arden. Ideas que permanecen.
+        </p>
+
+        <p class="hero-sub animate-fade-up stagger-2">
+          Charlas interactivas por <strong>Justo Enríquez</strong> — desde Chetumal,
+          Quintana Roo <Icon name="flag-mx" size={16} />
+        </p>
+      </div>
+    </section>
+
+    <!-- Talks Grid -->
+    <section class="talks-section" id="talks" aria-labelledby="talks-heading">
+      <div class="container">
+        <h2 id="talks-heading" class="section-heading animate-fade-up">
+          Charlas
+        </h2>
+
+        {
+          talks.length > 0 ? (
+            <div class="talks-grid">
+              {talks.map((talk, index) => (
+                <div class={`animate-fade-up stagger-${index + 1}`}>
+                  <TalkCard talk={talk} />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div class="talks-empty animate-fade-up">
+              <p>
+                Próximamente — la primera charla está en camino{" "}
+                <Icon name="fire" size={18} />
+              </p>
+            </div>
+          )
+        }
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+      <div class="container">
+        <div class="footer-inner">
+          <p class="footer-name">
+            <span class="text-gradient-fire">Justo Enríquez</span> — Chetumal, Q.
+            Roo
+          </p>
+          <div class="footer-links">
+            <a href="/justme" aria-label="Sobre Justo Enríquez"> Sobre mí </a>
+            <a
+              href="https://github.com/justenriquez19"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub de Justo"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/justo-enriquez/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn de Justo"
+            >
+              LinkedIn
+            </a>
+          </div>
+        </div>
+        <p class="footer-note">
+          Hecho con las mismas herramientas de las que hablo <Icon
+            name="peace"
+            size={18}
+          />
+        </p>
+      </div>
+    </footer>
+  </main>
+</BaseLayout>
+
+<style>
+  /* --- Hero --- */
+  .hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(
+      circle,
+      var(--color-ignite-glow-strong) 0%,
+      var(--color-ignite-glow) 30%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    animation: glow-pulse 4s ease-in-out infinite;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-title {
+    font-size: clamp(4rem, 15vw, 10rem);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-talks {
+    font-weight: 400;
+    color: #ffffff;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-tagline {
+    font-family: var(--font-body);
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    color: var(--color-ignite-text-secondary);
+    margin-bottom: 0.75rem;
+    max-width: none;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--color-ignite-text-muted);
+    max-width: none;
+  }
+
+  .hero-sub strong {
+    color: var(--color-ignite-text-primary);
+    font-weight: 600;
+  }
+
+  /* --- Talks Section --- */
+  .talks-section {
+    padding: var(--spacing-4xl) 0;
+  }
+
+  .section-heading {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: var(--spacing-2xl);
+    color: var(--color-ignite-text-primary);
+  }
+
+  .section-heading::after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: var(--color-ignite-fire);
+    margin-top: 0.75rem;
+    border-radius: var(--radius-full);
+  }
+
+  .talks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: var(--spacing-xl);
+  }
+
+  .talks-empty {
+    padding: var(--spacing-3xl) 0;
+    text-align: center;
+  }
+
+  .talks-empty p {
+    font-size: 1.125rem;
+    color: var(--color-ignite-text-muted);
+    max-width: none;
+  }
+
+  /* --- Footer --- */
+  .footer {
+    padding: var(--spacing-3xl) 0 var(--spacing-xl);
+    border-top: 1px solid var(--color-ignite-border);
+    margin-top: var(--spacing-4xl);
+  }
+
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .footer-name {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-ignite-text-primary);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: var(--spacing-md);
+  }
+
+  .footer-links a {
+    font-size: 0.875rem;
+    color: var(--color-ignite-text-muted);
+    transition: color var(--duration-fast) var(--ease-default);
+  }
+
+  .footer-links a:hover {
+    color: var(--color-ignite-fire-bright);
+  }
+
+  .footer-note {
+    font-size: 0.875rem;
+    color: var(--color-ignite-text-secondary);
+  }
+
+  /* --- Responsive --- */
+  @media (max-width: 768px) {
+    .hero {
+      min-height: 70vh;
+    }
+
+    .hero-glow {
+      width: 350px;
+      height: 350px;
+    }
+
+    .talks-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-inner {
+      flex-direction: column;
+      gap: var(--spacing-md);
+      text-align: center;
+    }
+  }
+</style>

@@ -1,0 +1,208 @@
+/* ============================================
+   IGNITE-TALKS — Global Styles & Design System
+   "Volcanic Minimalism"
+   ============================================ */
+
+/* --- Tailwind CSS 4 --- */
+@import "tailwindcss";
+
+/* --- Fontsource --- */
+@import "@fontsource-variable/jetbrains-mono";
+
+/* --- Animations --- */
+@import "./animations.css";
+
+/* --- Self-hosted Fonts (Fontshare) --- */
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/ClashDisplay-Variable.woff2') format('woff2');
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Variable.woff2') format('woff2');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- Tailwind 4 Theme (CSS-first config) --- */
+@theme {
+  /* Colors */
+  --color-ignite-black: #08080a;
+  --color-ignite-surface: #111114;
+  --color-ignite-surface-raised: #1a1a1f;
+  --color-ignite-border: #2a2a30;
+  --color-ignite-text-primary: #f0ece6;
+  --color-ignite-text-secondary: #8a8690;
+  --color-ignite-text-muted: #5a5660;
+  --color-ignite-fire: #e63620;
+  --color-ignite-fire-bright: #ff4a33;
+  --color-ignite-ember: #ff6b35;
+  --color-ignite-glow: rgba(230, 54, 32, 0.15);
+  --color-ignite-glow-strong: rgba(230, 54, 32, 0.3);
+
+  /* Typography */
+  --font-display: 'Clash Display', system-ui, sans-serif;
+  --font-body: 'Satoshi', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', monospace;
+
+  /* Spacing (4px base) */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+  --spacing-4xl: 6rem;
+
+  /* Border radius */
+  --radius-card: 12px;
+  --radius-sm: 6px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --ease-default: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --duration-fast: 150ms;
+  --duration-default: 300ms;
+  --duration-slow: 500ms;
+
+  /* Shadows */
+  --shadow-glow: 0 0 20px var(--color-ignite-glow), 0 0 60px var(--color-ignite-glow);
+  --shadow-glow-strong: 0 0 30px var(--color-ignite-glow-strong), 0 0 80px var(--color-ignite-glow);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+
+  /* Layout */
+  --max-width-content: 1200px;
+  --max-width-narrow: 800px;
+}
+
+/* --- Base Styles --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-ignite-black);
+  color: var(--color-ignite-text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* --- Grain/Noise Overlay --- */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* --- Typography --- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-ignite-text-primary);
+}
+
+h1 { font-size: clamp(2.5rem, 6vw, 5rem); }
+h2 { font-size: clamp(1.75rem, 4vw, 3rem); }
+h3 { font-size: clamp(1.25rem, 3vw, 2rem); }
+h4 { font-size: clamp(1.1rem, 2.5vw, 1.5rem); }
+
+p {
+  color: var(--color-ignite-text-secondary);
+  max-width: 65ch;
+}
+
+a {
+  color: var(--color-ignite-fire-bright);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-default);
+}
+
+a:hover {
+  color: var(--color-ignite-ember);
+}
+
+code, pre {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+
+/* --- Selection --- */
+::selection {
+  background-color: var(--color-ignite-fire);
+  color: var(--color-ignite-text-primary);
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-ignite-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-ignite-border);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ignite-text-muted);
+}
+
+/* --- Focus Styles --- */
+:focus-visible {
+  outline: 2px solid var(--color-ignite-fire);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* --- Utility Classes --- */
+.container {
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.container-narrow {
+  max-width: var(--max-width-narrow);
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.text-gradient-fire {
+  background: linear-gradient(135deg, var(--color-ignite-fire), var(--color-ignite-ember), var(--color-ignite-fire-bright));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

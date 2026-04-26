@@ -1,0 +1,9 @@
+// This directory will contain slide components for the "IA en procesos productivos" talk.
+// Each slide follows the SlideProps interface from src/lib/data.ts
+//
+// Example:
+//   Slide01.tsx
+//   Slide02.tsx
+//   ...
+//
+// Slides will be created when the talk content is ready.

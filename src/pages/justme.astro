@@ -1,0 +1,735 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/ui/Navbar.astro";
+import ReleviaLogo from "../components/ui/ReleviaLogo.astro";
+import Icon from "../components/ui/Icon.astro";
+import { strong } from "motion/react-m";
+---
+
+<BaseLayout
+  title="Justo Enríquez"
+  description="Founder & CEO de Relevia. Ingeniero en Desarrollo Web, +5 años de experiencia fullstack. Desde Chetumal, Quintana Roo."
+>
+  <Navbar />
+
+  <main class="justme" id="justme">
+    <!-- Header -->
+    <section class="profile-header" id="profile-header">
+      <div class="container-narrow">
+        <div class="profile-intro animate-fade-up">
+          <img
+            src="/images/justme/justo_enriquez.webp"
+            alt="Justo Enríquez"
+            class="profile-photo"
+            width="240"
+            height="240"
+            loading="eager"
+          />
+          <div class="profile-name-block">
+            <h1 class="profile-name">Justo Enríquez</h1>
+            <p class="profile-role">
+              Founder & CEO · <span class="text-gradient-fire">Relevia</span>
+            </p>
+            <p class="profile-role-secondary">
+              VP de Jóvenes Empresarios e Innovación · CANACO Chetumal
+            </p>
+            <p class="profile-location"><Icon name="map-pin" size={14} /> Chetumal, Quintana Roo, México</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Semblanza -->
+    <section class="profile-section" id="about" aria-labelledby="about-heading">
+      <div class="container-narrow">
+        <h2 id="about-heading" class="section-label animate-fade-up">
+          Semblanza
+        </h2>
+        <div class="bio-content animate-fade-up stagger-1">
+          <p class="bio-lead">
+            Originario de Chetumal, Ingeniero en Desarrollo Web por la UVEG. Mi
+            curiosidad por la tecnología despertó a los 11 años al programar mi
+            primer videojuego de forma autodidacta.
+          </p>
+          <p>
+            A los 20 años me integré a <strong>Netlogistik</strong>,
+            multinacional de logística, donde durante 4 años me desempeñé como
+            Software Developer. Uno de mis mayores logros fue desarrollar un web
+            service que llegó a procesar el 80% del volumen de solicitudes para
+            clientes como <strong>Nissin</strong>,
+            <strong>Levi's</strong> y <strong>José Cuervo</strong>.
+          </p>
+          <p>
+            Impulsado por resolver problemas reales de mi entorno, en 2024
+            inicié con el desarrollo de
+            <strong>Relevia</strong>: una plataforma de agentes de Inteligencia
+            Artificial que automatiza la atención por WhatsApp para negocios.
+            Desde septiembre de 2025, en alianza con <strong>Ynbadi</strong>, me
+            dedico de tiempo completo a escalar esta solución.
+          </p>
+          <p>
+            Actualmente también ocupo el cargo de <strong
+              >Vicepresidente de Jóvenes Empresarios e Innovación</strong
+            > en la CANACO SERVYTUR Chetumal, trabajando por impulsar el ecosistema
+            tecnológico y empresarial del sureste mexicano.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trayectoria -->
+    <section
+      class="profile-section"
+      id="experience"
+      aria-labelledby="exp-heading"
+    >
+      <div class="container-narrow">
+        <h2 id="exp-heading" class="section-label animate-fade-up">
+          Trayectoria
+        </h2>
+        <div class="timeline animate-fade-up stagger-2">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">2026 — presente</span>
+              <h3 class="timeline-title">Vicepresidente</h3>
+              <p class="timeline-org">CANACO SERVYTUR Chetumal</p>
+              <p class="timeline-desc">
+                VP de Jóvenes Empresarios e Innovación
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot timeline-dot-active"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">2025 — presente</span>
+              <h3 class="timeline-title">Founder & CEO</h3>
+              <p class="timeline-org">Relevia</p>
+              <p class="timeline-desc">
+                Plataforma de IA conversacional que ayuda a PyMEs a automatizar
+                su atención al cliente en WhatsApp. +5 años de experiencia
+                fullstack.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">2021 — 2025</span>
+              <h3 class="timeline-title">Software Developer</h3>
+              <p class="timeline-org">Netlogistik</p>
+              <p class="timeline-desc">
+                4 años en multinacional de logística. Automatización que procesó
+                el 80% del volumen para Nissin, Levi's y José Cuervo.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">2020 — 2021</span>
+              <h3 class="timeline-title">Frontend Web Developer</h3>
+              <p class="timeline-org">SEN IT</p>
+              <p class="timeline-desc">
+                Desarrollo frontend con C# y .NET Framework.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Educación -->
+    <section
+      class="profile-section"
+      id="education"
+      aria-labelledby="edu-heading"
+    >
+      <div class="container-narrow">
+        <h2 id="edu-heading" class="section-label animate-fade-up">
+          Educación
+        </h2>
+        <div class="edu-grid animate-fade-up stagger-3">
+          <div class="edu-card">
+            <h3 class="edu-title">Ingeniería en Desarrollo Web</h3>
+            <p class="edu-org">UVEG</p>
+            <span class="edu-date">2021 — 2023</span>
+          </div>
+          <div class="edu-card">
+            <h3 class="edu-title">Ingeniería en Redes Computacionales</h3>
+            <p class="edu-org">Universidad de Quintana Roo</p>
+            <span class="edu-date">2018 — 2020 · 5 semestres</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stack -->
+    <section class="profile-section" id="stack" aria-labelledby="stack-heading">
+      <div class="container-narrow">
+        <h2 id="stack-heading" class="section-label animate-fade-up">
+          Mi stack
+        </h2>
+        <div class="stack-grid animate-fade-up stagger-3">
+          <div class="stack-group">
+            <h3 class="stack-group-title">Frontend</h3>
+            <div class="stack-tags">
+              <span class="stack-tag">Angular</span>
+              <span class="stack-tag">React</span>
+              <span class="stack-tag">Astro</span>
+              <span class="stack-tag">TypeScript</span>
+              <span class="stack-tag">Tailwind CSS</span>
+            </div>
+          </div>
+          <div class="stack-group">
+            <h3 class="stack-group-title">Backend</h3>
+            <div class="stack-tags">
+              <span class="stack-tag">Node.js</span>
+              <span class="stack-tag">NestJS</span>
+              <span class="stack-tag">MongoDB</span>
+              <span class="stack-tag">REST APIs</span>
+              <span class="stack-tag">C# / .NET</span>
+            </div>
+          </div>
+          <div class="stack-group">
+            <h3 class="stack-group-title">IA & Automatización</h3>
+            <div class="stack-tags">
+              <span class="stack-tag">OpenAI / LLMs</span>
+              <span class="stack-tag">Agentes de IA</span>
+              <span class="stack-tag">Meta API</span>
+              <span class="stack-tag">WhatsApp Cloud</span>
+            </div>
+          </div>
+          <div class="stack-group">
+            <h3 class="stack-group-title">Infra & Tools</h3>
+            <div class="stack-tags">
+              <span class="stack-tag">Vercel</span>
+              <span class="stack-tag">Git</span>
+              <span class="stack-tag">Docker</span>
+              <span class="stack-tag">Mercado Pago</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Relevia -->
+    <section
+      class="profile-section profile-section-featured"
+      id="relevia"
+      aria-labelledby="relevia-heading"
+    >
+      <div class="container-narrow">
+        <h2 id="relevia-heading" class="section-label animate-fade-up">
+          Mi empresa
+        </h2>
+        <div class="featured-block animate-fade-up stagger-1">
+          <div class="featured-brand">
+            <ReleviaLogo class="featured-brand-logo" />
+          </div>
+          <p class="featured-tagline">"Te toma el relevo"</p>
+          <p class="featured-desc">
+            Fundé Relevia para resolver un problema común en PyMEs: pierden
+            clientes por no responder a tiempo. Iniciamos con el canal más usado
+            en latinoamérica, WhatsApp. Hoy nuestra plataforma de IA
+            conversacional automatiza atención, citas, reservas y pagos —
+            integrando Meta, Google Calendar, WordPress y más.
+          </p>
+          <div class="featured-stats">
+            <div class="stat">
+              <span class="stat-value">2025</span>
+              <span class="stat-label">Fundada</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">24/7</span>
+              <span class="stat-label">Disponibilidad</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">+5</span>
+              <span class="stat-label">Años fullstack</span>
+            </div>
+          </div>
+          <a
+            href="https://relevia.ai"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="relevia-cta"
+            id="link-relevia"
+          >
+            <img
+              src="/images/justme/relevia_icon.svg"
+              alt=""
+              class="relevia-cta-icon"
+              width="20"
+              height="20"
+            />
+            Visita nuestra web
+            <span class="relevia-cta-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Connect -->
+    <section
+      class="profile-section"
+      id="connect"
+      aria-labelledby="connect-heading"
+    >
+      <div class="container-narrow">
+        <h2 id="connect-heading" class="section-label animate-fade-up">
+          Conecta
+        </h2>
+        <div class="connect-links animate-fade-up stagger-2">
+          <a
+            href="https://www.linkedin.com/in/justo-enriquez/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="connect-link"
+            id="link-linkedin"
+          >
+            <span class="connect-link-icon"><Icon name="linkedin" size={18} /></span>
+            <span class="connect-link-label">LinkedIn</span>
+          </a>
+          <a
+            href="https://github.com/justenriquez19"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="connect-link"
+            id="link-github"
+          >
+            <span class="connect-link-icon"><Icon name="github" size={18} /></span>
+            <span class="connect-link-label">GitHub</span>
+          </a>
+          <a
+            href="/"
+            class="connect-link connect-link-internal"
+            id="link-talks"
+          >
+            <span class="connect-link-icon"><Icon name="fire" size={18} /></span>
+            <span class="connect-link-label">Mis charlas</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .justme {
+    padding-top: 5rem;
+    padding-bottom: 4rem;
+  }
+
+  /* --- Profile Header --- */
+  .profile-header {
+    padding: 4rem 0 2rem;
+  }
+
+  .profile-intro {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+  }
+
+  .profile-photo {
+    flex-shrink: 0;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--color-ignite-border);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .profile-name {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.375rem;
+  }
+
+  .profile-role {
+    font-size: 1.0625rem;
+    color: var(--color-ignite-text-secondary);
+    margin-bottom: 0.125rem;
+  }
+
+  .profile-role-secondary {
+    font-size: 0.9375rem;
+    color: var(--color-ignite-text-secondary);
+    margin-bottom: 0.375rem;
+  }
+
+  .profile-location {
+    font-size: 0.875rem;
+    color: var(--color-ignite-text-muted);
+  }
+
+  /* --- Section --- */
+  .profile-section {
+    padding: 2.5rem 0;
+  }
+
+  .profile-section-featured {
+    background-color: rgba(139, 92, 246, 0.04);
+    border-top: 1px solid rgba(139, 92, 246, 0.2);
+    border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+    margin: 2rem 0;
+    padding: 3rem 1.5rem;
+  }
+
+  .section-label {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-ignite-text-primary);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .section-label::after {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 2px;
+    background: var(--color-ignite-fire);
+    margin-top: 0.5rem;
+    border-radius: var(--radius-full);
+  }
+
+  #relevia-heading::after {
+    background: #8b5cf6;
+  }
+
+  /* --- Bio --- */
+  .bio-content p {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--color-ignite-text-secondary);
+    margin-bottom: 1.25rem;
+    max-width: none;
+  }
+
+  .bio-lead {
+    font-size: 1.1875rem !important;
+    color: var(--color-ignite-text-primary) !important;
+  }
+
+  .bio-content strong {
+    color: var(--color-ignite-fire-bright);
+    font-weight: 600;
+  }
+
+  /* --- Timeline --- */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: var(--color-ignite-border);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-bottom: 2rem;
+  }
+
+  .timeline-item:last-child {
+    padding-bottom: 0;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: -2rem;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-ignite-surface-raised);
+    border: 2px solid var(--color-ignite-border);
+    z-index: 1;
+  }
+
+  .timeline-dot-active {
+    background: var(--color-ignite-fire);
+    border-color: var(--color-ignite-fire);
+    box-shadow: 0 0 8px var(--color-ignite-glow-strong);
+  }
+
+  .timeline-date {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-ignite-text-muted);
+    letter-spacing: 0.02em;
+  }
+
+  .timeline-title {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--color-ignite-text-primary);
+    margin: 0.25rem 0 0.125rem;
+  }
+
+  .timeline-org {
+    font-size: 0.875rem;
+    color: var(--color-ignite-fire-bright);
+    margin-bottom: 0.375rem;
+  }
+
+  .timeline-desc {
+    font-size: 0.875rem;
+    color: var(--color-ignite-text-secondary);
+    line-height: 1.6;
+  }
+
+  /* --- Education --- */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .edu-card {
+    background-color: var(--color-ignite-surface);
+    border: 1px solid var(--color-ignite-border);
+    border-radius: var(--radius-card);
+    padding: 1.25rem;
+  }
+
+  .edu-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-ignite-text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .edu-org {
+    font-size: 0.875rem;
+    color: var(--color-ignite-text-secondary);
+    margin-bottom: 0.375rem;
+  }
+
+  .edu-date {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-ignite-text-muted);
+  }
+
+  /* --- Stack --- */
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .stack-group-title {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-ignite-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+  }
+
+  .stack-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+  }
+
+  .stack-tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 0.3rem 0.75rem;
+    background-color: var(--color-ignite-surface-raised);
+    color: var(--color-ignite-text-secondary);
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-ignite-border);
+    transition:
+      border-color var(--duration-fast) var(--ease-default),
+      color var(--duration-fast) var(--ease-default);
+  }
+
+  .stack-tag:hover {
+    border-color: var(--color-ignite-fire);
+    color: var(--color-ignite-text-primary);
+  }
+
+  /* --- Featured --- */
+  .featured-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .featured-brand :global(.featured-brand-logo) {
+    height: 72px;
+    width: auto;
+  }
+
+  .featured-tagline {
+    font-family: var(--font-display);
+    font-size: 1.625rem;
+    font-style: italic;
+    color: #ffffff;
+    margin-bottom: 1rem;
+  }
+
+  .featured-desc {
+    font-size: 1rem;
+    color: var(--color-ignite-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    max-width: none;
+  }
+
+  .featured-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-value {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #a78bfa;
+  }
+
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-ignite-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 0.25rem;
+  }
+
+  .relevia-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: var(--radius-card);
+    border: none;
+    transition:
+      transform var(--duration-default) var(--ease-default),
+      box-shadow var(--duration-default) var(--ease-default),
+      filter var(--duration-default) var(--ease-default);
+    box-shadow: 0 2px 12px rgba(139, 92, 246, 0.3);
+  }
+
+  .relevia-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.45);
+    filter: brightness(1.1);
+  }
+
+  .relevia-cta-icon {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+  }
+
+  .relevia-cta-arrow {
+    margin-left: 0.25rem;
+    transition: transform var(--duration-fast) var(--ease-default);
+  }
+
+  .relevia-cta:hover .relevia-cta-arrow {
+    transform: translateX(3px);
+  }
+
+  /* --- Connect --- */
+  .connect-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .connect-link {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.75rem 1.25rem;
+    background-color: var(--color-ignite-surface);
+    border: 1px solid var(--color-ignite-border);
+    border-radius: var(--radius-card);
+    text-decoration: none;
+    transition:
+      border-color var(--duration-default) var(--ease-default),
+      box-shadow var(--duration-default) var(--ease-default),
+      transform var(--duration-default) var(--ease-default);
+  }
+
+  .connect-link:hover {
+    border-color: var(--color-ignite-fire);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+  }
+
+  .connect-link-icon {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-ignite-fire-bright);
+    min-width: 1.5rem;
+    text-align: center;
+  }
+
+  .connect-link-label {
+    font-size: 0.9375rem;
+    color: var(--color-ignite-text-primary);
+    font-weight: 500;
+  }
+
+  /* --- Responsive --- */
+  @media (max-width: 768px) {
+    .profile-intro {
+      flex-direction: column;
+      text-align: center;
+    }
+    .profile-photo {
+      width: 180px;
+      height: 180px;
+    }
+    .edu-grid,
+    .stack-grid {
+      grid-template-columns: 1fr;
+    }
+    .featured-stats {
+      gap: 1.5rem;
+    }
+    .connect-links {
+      flex-direction: column;
+    }
+    .connect-link {
+      justify-content: center;
+    }
+  }
+</style>
