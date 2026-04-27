@@ -143,7 +143,7 @@ export default function Slide14Relevia(): ReactNode {
               </clipPath>
             </defs>
           </svg>
-          <span style={{ color: '#ffffff' }}>en</span>{' '}<span style={{ color: '#6627b9' }}>Chetumal</span>
+          <span style={{ color: '#ffffff' }}>en</span>{' '}<span style={{ color: '#a855f7' }}>Chetumal</span>
         </motion.h2>
 
         <div style={{
@@ -163,7 +163,7 @@ export default function Slide14Relevia(): ReactNode {
               position: 'relative',
               width: '100%',
               maxWidth: '340px',
-              minHeight: '360px',
+              minHeight: 'clamp(260px, 45vw, 360px)',
               overflow: 'hidden',
               borderRadius: '20px',
             }}
@@ -178,8 +178,10 @@ export default function Slide14Relevia(): ReactNode {
             transition={{ delay: 0.6 }}
             style={{
               flex: 1,
-              minWidth: '220px',
-              maxWidth: '350px',
+              minWidth: '280px',
+              width: '100%',
+              maxWidth: '420px',
+              margin: '0 auto',
               display: 'flex',
               flexDirection: 'column',
               gap: 'clamp(0.75rem, 2vw, 1rem)',
@@ -191,9 +193,9 @@ export default function Slide14Relevia(): ReactNode {
               borderRadius: '14px',
               border: '1px solid var(--color-slide-border)',
             }}>
-              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(0.9rem, 2vw, 1.75rem)', color: '#ffffff', fontWeight: 600, marginBottom: '0.5rem', display: 'flex', alignItems: 'baseline', gap: 'clamp(0.3rem, 0.6vw, 0.5rem)', flexWrap: 'wrap' }}>
-                ¿<span style={{ color: '#5820a2' }}>Qué</span> es
-                <svg viewBox="0 0 135 25" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Relevia Logo" style={{ width: 'clamp(70px, 12vw, 150px)', height: 'auto', verticalAlign: 'baseline', position: 'relative', top: '1px' }}>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.5rem, 2.5vw, 1.75rem)', color: '#ffffff', fontWeight: 600, marginBottom: '0.5rem', display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: 'clamp(0.3rem, 0.6vw, 0.5rem)', flexWrap: 'wrap' }}>
+                ¿<span style={{ color: '#a855f7' }}>Qué</span> es
+                <svg viewBox="0 0 135 25" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Relevia Logo" style={{ width: 'clamp(115px, 14vw, 150px)', height: 'auto', verticalAlign: 'baseline', position: 'relative', top: '1px' }}>
                   <g clipPath="url(#clip0_slide14_h3)">
                     <path d="M14.3964 7.04829H4.48159C2.01691 7.04829 0 9.01187 0 11.4114V20.6369C0 23.0364 2.01691 25 4.48159 25H14.3964C16.8611 25 18.878 23.0364 18.878 20.6369V11.4114C18.878 9.01187 16.8611 7.04829 14.3964 7.04829ZM3.09616 17.4444L3.12359 15.5242L5.64823 15.5584L8.29534 13.8426L5.69798 12.0454L3.17334 12.0113L3.20077 10.0912L6.34286 10.1334L10.7434 13.1787L10.7237 14.5605L6.23889 17.486L3.09616 17.4444ZM12.6398 21.9571L8.15501 19.0316L8.13524 17.6499L12.5358 14.6045L15.6779 14.5623L15.7053 16.4824L13.1807 16.5166L10.5833 18.3138L13.2304 20.0296L15.7551 19.9954L15.7825 21.9155L12.6398 21.9571Z" fill="#ffffff" />
                     <path d="M29.3829 13.4501V24.6019H32.761V13.4501C32.761 11.6418 34.2721 10.1694 36.1295 10.1694V6.88062C32.4095 6.88062 29.3829 9.82848 29.3829 13.4501Z" fill="#ffffff" />
@@ -213,7 +215,7 @@ export default function Slide14Relevia(): ReactNode {
                 </svg>
                 ?
               </h3>
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(0.75rem, 1.6vw, 1.4rem)', color: '#ffffff', lineHeight: 1.5 }}>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(0.9rem, 1.8vw, 1.4rem)', color: '#ffffff', lineHeight: 1.5, textAlign: 'center' }}>
                 Asistentes de IA por WhatsApp para PyMEs. Atienden clientes, agendan citas y toman pedidos 24/7.
               </p>
             </div>
@@ -234,15 +236,16 @@ export default function Slide14Relevia(): ReactNode {
                   borderRadius: '12px',
                   border: '1px solid var(--color-slide-border)',
                   display: 'flex',
+                  flexDirection: 'column',
                   alignItems: 'center',
-                  gap: 'clamp(0.5rem, 1.5vw, 0.75rem)',
+                  justifyContent: 'center',
+                  gap: 'clamp(0.25rem, 0.8vw, 0.375rem)',
+                  textAlign: 'center',
                 }}
               >
                 <span style={{ fontSize: 'clamp(1.25rem, 3vw, 2.5rem)' }}>{biz.emoji}</span>
-                <div>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(0.8rem, 1.7vw, 1.5rem)', color: 'var(--color-ignite-text-primary)', fontWeight: 600 }}>{biz.name}</div>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.55rem, 1.2vw, 1rem)', color: '#ffffff' }}>{biz.bot} · {biz.type}</div>
-                </div>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(0.95rem, 1.8vw, 1.5rem)', color: 'var(--color-ignite-text-primary)', fontWeight: 600 }}>{biz.name}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.75rem, 1.4vw, 1rem)', color: '#ffffff' }}>{biz.bot} · {biz.type}</div>
               </motion.div>
             ))}
 
@@ -256,7 +259,7 @@ export default function Slide14Relevia(): ReactNode {
                 border: '1px solid rgba(6,214,160,0.2)',
                 borderRadius: '10px',
                 fontFamily: 'var(--font-mono)',
-                fontSize: 'clamp(0.7rem, 1.5vw, 1.25rem)',
+                fontSize: 'clamp(0.85rem, 1.6vw, 1.25rem)',
                 color: 'var(--neon-green)',
                 textAlign: 'center',
               }}

@@ -11,10 +11,10 @@ const promptLines = [
 ];
 
 const appElements = [
-  { label: 'Header + Nav', color: '#00d4ff', width: '100%', height: '30px' },
-  { label: 'KPI Cards', color: '#a855f7', width: '100%', height: '50px' },
-  { label: 'Chart Area', color: '#06d6a0', width: '100%', height: '90px' },
-  { label: 'Alert Panel', color: '#ec4899', width: '100%', height: '40px' },
+  { label: 'Header + Nav', color: '#00d4ff', width: '100%', height: 'clamp(15px, 5vw, 50px)' },
+  { label: 'KPI Cards', color: '#a855f7', width: '100%', height: 'clamp(25px, 9vw, 80px)' },
+  { label: 'Chart Area', color: '#06d6a0', width: '100%', height: 'clamp(45px, 15vw, 150px)' },
+  { label: 'Alert Panel', color: '#ec4899', width: '100%', height: 'clamp(20px, 7vw, 60px)' },
 ];
 
 interface Slide11VibeCodingProps {
@@ -58,7 +58,7 @@ export default function Slide11VibeCoding({ subStep = 0 }: Slide11VibeCodingProp
 
   return (
     <div className="slide">
-      <div className="slide-inner" style={{ maxWidth: '950px', padding: '0 clamp(1rem, 4vw, 2rem)' }}>
+      <div className="slide-inner" style={{ maxWidth: '1400px', padding: '0 clamp(1rem, 4vw, 2rem)' }}>
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="slide-label">
           La revolución silenciosa
         </motion.div>
@@ -69,7 +69,7 @@ export default function Slide11VibeCoding({ subStep = 0 }: Slide11VibeCodingProp
           transition={{ delay: 0.2 }}
           style={{
             fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(1.8rem, 7vw, 5rem)',
+            fontSize: 'clamp(1.5rem, 10vw, 8rem)',
             fontWeight: 700,
             textAlign: 'center',
           }}
@@ -81,7 +81,7 @@ export default function Slide11VibeCoding({ subStep = 0 }: Slide11VibeCodingProp
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
-          gap: 'clamp(1rem, 3vw, 1.5rem)',
+          gap: 'clamp(0.8rem, 4vw, 3rem)',
           width: '100%',
         }}>
           {/* ═══════════ Terminal ═══════════ */}
@@ -98,25 +98,25 @@ export default function Slide11VibeCoding({ subStep = 0 }: Slide11VibeCodingProp
           >
             {/* Terminal header */}
             <div style={{
-              padding: '0.5rem 0.75rem',
+              padding: 'clamp(0.25rem, 1vw, 1rem) clamp(0.4rem, 1.5vw, 1.5rem)',
               background: '#161b22',
               display: 'flex',
-              gap: '6px',
+              gap: 'clamp(3px, 1vw, 12px)',
               alignItems: 'center',
             }}>
-              <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#ff5f56' }} />
-              <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#ffbd2e' }} />
-              <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#27c93f' }} />
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.5rem, 1.2vw, 1rem)', color: '#8b949e', marginLeft: '0.5rem' }}>terminal</span>
+              <div style={{ width: 'clamp(5px, 1.2vw, 16px)', height: 'clamp(5px, 1.2vw, 16px)', borderRadius: '50%', background: '#ff5f56' }} />
+              <div style={{ width: 'clamp(5px, 1.2vw, 16px)', height: 'clamp(5px, 1.2vw, 16px)', borderRadius: '50%', background: '#ffbd2e' }} />
+              <div style={{ width: 'clamp(5px, 1.2vw, 16px)', height: 'clamp(5px, 1.2vw, 16px)', borderRadius: '50%', background: '#27c93f' }} />
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.7rem, 2vw, 2rem)', color: '#8b949e', marginLeft: '0.5rem' }}>terminal</span>
             </div>
 
             {/* Terminal content */}
-            <div style={{ padding: 'clamp(0.5rem, 1.5vw, 0.75rem)', minHeight: '220px' }}>
+            <div style={{ padding: 'clamp(0.5rem, 2vw, 2rem)', height: 'clamp(140px, 45vw, 480px)', overflow: 'hidden' }}>
               {/* subStep 0: show prompt typing out */}
               {subStep >= 0 && promptLines.slice(0, typedLine).map((line, i) => (
                 <div key={i} style={{
                   fontFamily: 'var(--font-mono)',
-                  fontSize: 'clamp(0.6rem, 1.3vw, 1.1rem)',
+                  fontSize: 'clamp(0.7rem, 1.5vw, 1.6rem)',
                   lineHeight: 1.8,
                   color: line.startsWith('$') ? '#06d6a0' :
                          line.startsWith('>') ? '#c9d1d9' :
@@ -131,8 +131,8 @@ export default function Slide11VibeCoding({ subStep = 0 }: Slide11VibeCodingProp
               {subStep === 0 && (
                 <span style={{
                   display: 'inline-block',
-                  width: '7px',
-                  height: '14px',
+                  width: 'clamp(3px, 1vw, 14px)',
+                  height: 'clamp(7px, 2vw, 28px)',
                   background: 'var(--neon-cyan)',
                   animation: 'blink-cursor 1s step-end infinite',
                 }} />
@@ -142,7 +142,7 @@ export default function Slide11VibeCoding({ subStep = 0 }: Slide11VibeCodingProp
               {subStep >= 1 && typedLine < promptLines.length && promptLines.slice(typedLine).map((line, i) => (
                 <div key={`rest-${i}`} style={{
                   fontFamily: 'var(--font-mono)',
-                  fontSize: 'clamp(0.6rem, 1.3vw, 1.1rem)',
+                  fontSize: 'clamp(0.7rem, 1.5vw, 1.6rem)',
                   lineHeight: 1.8,
                   color: line.startsWith('$') ? '#06d6a0' :
                          line.startsWith('>') ? '#c9d1d9' :
@@ -153,48 +153,47 @@ export default function Slide11VibeCoding({ subStep = 0 }: Slide11VibeCodingProp
                 </div>
               ))}
 
-              {/* subStep 1: "working" indicator */}
-              <AnimatePresence>
-                {subStep === 1 && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: 'clamp(0.6rem, 1.3vw, 1.1rem)',
-                      lineHeight: 1.8,
-                      color: '#f59e0b',
-                      whiteSpace: 'pre',
-                      marginTop: '0.5rem',
-                    }}
-                  >
-                    ⏳ Generando código{dots}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              {/* subStep 2: success message */}
-              <AnimatePresence>
-                {subStep >= 2 && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4 }}
-                    style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: 'clamp(0.6rem, 1.3vw, 1.1rem)',
-                      lineHeight: 1.8,
-                      color: '#27c93f',
-                      whiteSpace: 'pre',
-                      marginTop: '0.5rem',
-                    }}
-                  >
-                    ✅ Dashboard generado — 4 componentes
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {/* subStep 1 & 2: Status indicator wrapped in grid container for perfect overlay */}
+              <div style={{ display: 'grid', marginTop: 'clamp(0.25rem, 1vw, 1rem)', minHeight: '1.8em', alignItems: 'center' }}>
+                <AnimatePresence>
+                  {subStep === 1 && (
+                    <motion.div
+                      key="working"
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 }}
+                      style={{
+                        gridArea: '1 / 1',
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: 'clamp(0.7rem, 1.5vw, 1.6rem)',
+                        lineHeight: 1.8,
+                        color: '#f59e0b',
+                        whiteSpace: 'pre',
+                      }}
+                    >
+                      ⏳ Generando código{dots}
+                    </motion.div>
+                  )}
+                  {subStep >= 2 && (
+                    <motion.div
+                      key="done"
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4 }}
+                      style={{
+                        gridArea: '1 / 1',
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: 'clamp(0.7rem, 1.5vw, 1.6rem)',
+                        lineHeight: 1.8,
+                        color: '#27c93f',
+                        whiteSpace: 'pre',
+                      }}
+                    >
+                      ✅ Dashboard generado — 4 componentes
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
           </motion.div>
 
@@ -214,29 +213,29 @@ export default function Slide11VibeCoding({ subStep = 0 }: Slide11VibeCodingProp
           >
             {/* Browser chrome */}
             <div style={{
-              padding: '0.5rem 0.75rem',
+              padding: 'clamp(0.25rem, 1vw, 1rem) clamp(0.4rem, 1.5vw, 1.5rem)',
               background: 'var(--color-slide-surface-raised)',
               display: 'flex',
               alignItems: 'center',
-              gap: '0.5rem',
+              gap: 'clamp(0.25rem, 1vw, 1rem)',
             }}>
               <div style={{
                 flex: 1,
-                height: '20px',
+                height: 'clamp(10px, 3vw, 40px)',
                 borderRadius: '6px',
                 background: 'rgba(255,255,255,0.05)',
-                padding: '0 0.5rem',
+                padding: '0 clamp(0.25rem, 1vw, 1rem)',
                 display: 'flex',
                 alignItems: 'center',
               }}>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.45rem, 1vw, 0.85rem)', color: '#ffffff' }}>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.7rem, 2vw, 1.7rem)', color: '#ffffff' }}>
                   localhost:3000/dashboard
                 </span>
               </div>
             </div>
 
             {/* Rendered app elements — only reveal at subStep 2 */}
-            <div style={{ padding: 'clamp(0.5rem, 1.5vw, 0.75rem)', display: 'flex', flexDirection: 'column', gap: 'clamp(0.3rem, 0.8vw, 0.5rem)', minHeight: '220px' }}>
+            <div style={{ padding: 'clamp(0.5rem, 2vw, 2rem)', display: 'flex', flexDirection: 'column', gap: 'clamp(0.3rem, 1.6vw, 1rem)', height: 'clamp(140px, 45vw, 480px)' }}>
               {subStep >= 2 ? appElements.map((el, i) => (
                 <motion.div
                   key={el.label}
@@ -255,7 +254,7 @@ export default function Slide11VibeCoding({ subStep = 0 }: Slide11VibeCodingProp
                     transformOrigin: 'top',
                   }}
                 >
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.5rem, 1.2vw, 1rem)', color: el.color }}>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.7rem, 2.4vw, 2rem)', color: el.color }}>
                     {el.label}
                   </span>
                 </motion.div>
@@ -266,10 +265,9 @@ export default function Slide11VibeCoding({ subStep = 0 }: Slide11VibeCodingProp
                   alignItems: 'center',
                   justifyContent: 'center',
                   height: '100%',
-                  minHeight: '200px',
                   color: '#8b949e',
                   fontFamily: 'var(--font-mono)',
-                  fontSize: 'clamp(0.6rem, 1.3vw, 1rem)',
+                  fontSize: 'clamp(0.8rem, 2.6vw, 2rem)',
                 }}>
                   {subStep === 1 ? (
                     <motion.span
@@ -287,25 +285,24 @@ export default function Slide11VibeCoding({ subStep = 0 }: Slide11VibeCodingProp
           </motion.div>
         </div>
 
-        {/* Stat — only at subStep 2 */}
-        <AnimatePresence>
-          {subStep >= 2 && (
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 2.5 }}
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(1.1rem, 3vw, 2.5rem)',
-                fontWeight: 600,
-                textAlign: 'center',
-              }}
-            >
-              <span style={{ color: 'var(--neon-cyan)' }}>41%</span>
-              <span style={{ color: '#ffffff' }}> del código global es generado por IA</span>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Stat — always present in DOM to prevent layout shifts */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 'clamp(0.5rem, 3vw, 2rem)' }}>
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: subStep >= 2 ? 1 : 0, y: subStep >= 2 ? 0 : 12 }}
+            transition={{ delay: subStep >= 2 ? 2.5 : 0 }}
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(1rem, 5vw, 3.5rem)',
+              fontWeight: 600,
+              textAlign: 'center',
+              pointerEvents: subStep >= 2 ? 'auto' : 'none',
+            }}
+          >
+            <span style={{ color: 'var(--neon-cyan)' }}>41%</span>
+            <span style={{ color: '#ffffff' }}> del código global es generado por IA</span>
+          </motion.div>
+        </div>
       </div>
     </div>
   );

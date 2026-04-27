@@ -6,6 +6,14 @@ const realities = ['Baja digitalización', 'Brecha de talento', 'PyMEs sin datos
 
 export default function Slide13Paradox(): ReactNode {
   const [tilt, setTilt] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const t = setTimeout(() => setTilt(1), 1200);
@@ -54,7 +62,7 @@ export default function Slide13Paradox(): ReactNode {
 
           {/* Beam */}
           <motion.div
-            animate={{ rotate: tilt ? 12 : 0 }}
+            animate={{ rotate: tilt ? (isMobile ? 4 : 12) : 0 }}
             transition={{ duration: 1.5, ease: [0.25, 0.1, 0.25, 1] }}
             style={{
               display: 'grid',

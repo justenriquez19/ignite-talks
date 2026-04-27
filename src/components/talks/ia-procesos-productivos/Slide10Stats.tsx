@@ -1,5 +1,5 @@
 import { useState, useEffect, type ReactNode } from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence, LayoutGroup } from 'motion/react';
 
 function AnimatedCounter({ target, duration = 2000, delay = 0, suffix = '%' }: { target: number; duration?: number; delay?: number; suffix?: string }) {
   const [count, setCount] = useState(0);
@@ -32,14 +32,16 @@ export default function Slide10Stats(): ReactNode {
 
   return (
     <div className="slide" style={{ background: '#050508' }}>
-      <div className="slide-inner" style={{ gap: 'clamp(1.5rem, 4vw, 3rem)', padding: '0 clamp(1rem, 4vw, 2rem)' }}>
-        {/* First stat: 98% */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          style={{ textAlign: 'center' }}
-        >
+      <LayoutGroup>
+        <div className="slide-inner" style={{ gap: 'clamp(1.5rem, 4vw, 3rem)', padding: '0 clamp(1rem, 4vw, 2rem)' }}>
+          {/* First stat: 98% */}
+          <motion.div
+            layout
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, duration: 0.6, layout: { duration: 0.9, ease: [0.25, 0.1, 0.25, 1] } }}
+            style={{ textAlign: 'center' }}
+          >
           <div className="slide-big-number" style={{ color: 'var(--neon-cyan)' }}>
             <AnimatedCounter target={98} delay={500} />
           </div>
@@ -54,63 +56,77 @@ export default function Slide10Stats(): ReactNode {
           </div>
         </motion.div>
 
-        {showSecond && (
-          <>
+        <AnimatePresence mode="popLayout">
+          {showSecond && (
             <motion.div
-              initial={{ opacity: 0, scaleX: 0 }}
-              animate={{ opacity: 1, scaleX: 1 }}
-              transition={{ duration: 0.5 }}
-              className="neon-line"
-              style={{ opacity: 0.3 }}
-            />
-
-            {/* Second stat: 20% */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              style={{ textAlign: 'center' }}
-            >
-              <div className="slide-big-number" style={{
-                background: 'linear-gradient(135deg, var(--neon-purple), var(--neon-pink))',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}>
-                <AnimatedCounter target={20} delay={200} />
-              </div>
-              <div style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: 'clamp(1.1rem, 3vw, 2.5rem)',
-                color: '#ffffff',
-                marginTop: 'clamp(0.25rem, 1vw, 0.5rem)',
-                textAlign: 'center',
-              }}>
-                están preparados para usarla
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.5 }}
-              style={{
-                padding: 'clamp(0.5rem, 1.5vw, 0.75rem) clamp(1rem, 3vw, 1.5rem)',
-                background: 'rgba(168,85,247,0.08)',
-                border: '1px solid rgba(168,85,247,0.2)',
-                borderRadius: '12px',
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(1rem, 2.5vw, 2rem)',
-                color: 'var(--neon-purple)',
-                fontWeight: 600,
-                textAlign: 'center',
+              key="stats-second"
+              layout
+              initial={{ opacity: 0, y: 20, filter: 'blur(6px)' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              transition={{
+                duration: 1.2,
+                ease: [0.25, 0.1, 0.25, 1],
+                layout: { duration: 0.9, ease: [0.25, 0.1, 0.25, 1] },
               }}
+              style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(1.5rem, 4vw, 3rem)', width: '100%' }}
             >
-              Esa brecha = TU oportunidad
+              <motion.div
+                className="neon-line"
+                style={{ opacity: 0.3 }}
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+              />
+
+              {/* Second stat: 20% */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                style={{ textAlign: 'center' }}
+              >
+                <div className="slide-big-number" style={{
+                  background: 'linear-gradient(135deg, var(--neon-purple), var(--neon-pink))',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}>
+                  <AnimatedCounter target={20} delay={200} />
+                </div>
+                <div style={{
+                  fontFamily: 'var(--font-body)',
+                  fontSize: 'clamp(1.1rem, 3vw, 2.5rem)',
+                  color: '#ffffff',
+                  marginTop: 'clamp(0.25rem, 1vw, 0.5rem)',
+                  textAlign: 'center',
+                }}>
+                  están preparados para usarla
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8, duration: 0.6 }}
+                style={{
+                  padding: 'clamp(0.5rem, 1.5vw, 0.75rem) clamp(1rem, 3vw, 1.5rem)',
+                  background: 'rgba(168,85,247,0.08)',
+                  border: '1px solid rgba(168,85,247,0.2)',
+                  borderRadius: '12px',
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 'clamp(1rem, 2.5vw, 2rem)',
+                  color: 'var(--neon-purple)',
+                  fontWeight: 600,
+                  textAlign: 'center',
+                }}
+              >
+                Esa brecha = TU oportunidad
+              </motion.div>
             </motion.div>
-          </>
-        )}
-      </div>
+          )}
+        </AnimatePresence>
+        </div>
+      </LayoutGroup>
     </div>
   );
 }

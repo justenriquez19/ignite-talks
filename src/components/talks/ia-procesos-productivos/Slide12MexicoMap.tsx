@@ -70,9 +70,10 @@ export default function Slide12MexicoMap(): ReactNode {
           transition={{ delay: 0.2 }}
           style={{
             fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(1.8rem, 7vw, 5rem)',
+            fontSize: 'clamp(2rem, 8vw, 6rem)',
             fontWeight: 700,
             textAlign: 'center',
+            color: '#ffffff',
           }}
         >
           México en el Mapa
@@ -125,8 +126,8 @@ export default function Slide12MexicoMap(): ReactNode {
               {/* Dot */}
               <div
                 style={{
-                  width: '12px',
-                  height: '12px',
+                  width: 'clamp(8px, 1.5vw, 14px)',
+                  height: 'clamp(8px, 1.5vw, 14px)',
                   borderRadius: '50%',
                   background: spot.color,
                   boxShadow: `0 0 10px ${spot.color}60, 0 0 20px ${spot.color}30`,
@@ -141,8 +142,8 @@ export default function Slide12MexicoMap(): ReactNode {
                   position: 'absolute',
                   top: '50%',
                   ...(spot.labelDir === 'right'
-                    ? { left: '18px' }
-                    : { right: '18px' }),
+                    ? { left: 'clamp(10px, 2vw, 18px)' }
+                    : { right: 'clamp(10px, 2vw, 18px)' }),
                   transform: 'translateY(-50%)',
                   whiteSpace: 'nowrap',
                   pointerEvents: 'none',
@@ -150,7 +151,7 @@ export default function Slide12MexicoMap(): ReactNode {
               >
                 <div style={{
                   fontFamily: 'var(--font-display)',
-                  fontSize: 'clamp(0.45rem, 1.1vw, 0.75rem)',
+                  fontSize: 'clamp(0.6rem, 1.6vw, 1.2rem)',
                   color: spot.color,
                   fontWeight: 600,
                   lineHeight: 1.2,
@@ -160,8 +161,8 @@ export default function Slide12MexicoMap(): ReactNode {
                 </div>
                 <div style={{
                   fontFamily: 'var(--font-mono)',
-                  fontSize: 'clamp(0.35rem, 0.8vw, 0.55rem)',
-                  color: 'rgba(255,255,255,0.6)',
+                  fontSize: 'clamp(0.45rem, 1.2vw, 0.85rem)',
+                  color: 'rgba(255,255,255,0.8)',
                   lineHeight: 1.2,
                   textShadow: '0 1px 4px rgba(0,0,0,0.8)',
                 }}>
@@ -192,7 +193,7 @@ export default function Slide12MexicoMap(): ReactNode {
                   >
                     <div style={{
                       fontFamily: 'var(--font-display)',
-                      fontSize: 'clamp(0.6rem, 1.3vw, 0.9rem)',
+                      fontSize: 'clamp(0.8rem, 2vw, 1.4rem)',
                       color: spot.color,
                       fontWeight: 600,
                     }}>
@@ -200,9 +201,9 @@ export default function Slide12MexicoMap(): ReactNode {
                     </div>
                     <div style={{
                       fontFamily: 'var(--font-mono)',
-                      fontSize: 'clamp(0.45rem, 1vw, 0.7rem)',
+                      fontSize: 'clamp(0.6rem, 1.5vw, 1rem)',
                       color: '#ffffff',
-                      marginTop: '2px',
+                      marginTop: '4px',
                     }}>
                       {spot.ai}
                     </div>
@@ -237,8 +238,8 @@ export default function Slide12MexicoMap(): ReactNode {
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
-                width: '24px',
-                height: '24px',
+                width: 'clamp(16px, 3vw, 28px)',
+                height: 'clamp(16px, 3vw, 28px)',
                 borderRadius: '50%',
                 border: `2px solid ${chetumal.color}`,
                 animation: 'chetumal-ping 2s ease-out infinite',
@@ -251,8 +252,8 @@ export default function Slide12MexicoMap(): ReactNode {
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
-                width: '24px',
-                height: '24px',
+                width: 'clamp(16px, 3vw, 28px)',
+                height: 'clamp(16px, 3vw, 28px)',
                 borderRadius: '50%',
                 border: `2px solid ${chetumal.colorBright}`,
                 animation: 'chetumal-ping 2s ease-out infinite',
@@ -262,8 +263,8 @@ export default function Slide12MexicoMap(): ReactNode {
             {/* Main dot — larger, breathing glow */}
             <div
               style={{
-                width: '20px',
-                height: '20px',
+                width: 'clamp(14px, 2.5vw, 24px)',
+                height: 'clamp(14px, 2.5vw, 24px)',
                 borderRadius: '50%',
                 background: `radial-gradient(circle at 35% 35%, ${chetumal.colorBright}, ${chetumal.color})`,
                 border: '2px solid rgba(255,255,255,0.3)',
@@ -277,17 +278,17 @@ export default function Slide12MexicoMap(): ReactNode {
             <div
               style={{
                 position: 'absolute',
-                top: '50%',
-                right: '28px',
-                transform: 'translateY(-50%)',
+                bottom: 'clamp(20px, 4vw, 32px)',
+                left: '50%',
+                transform: 'translateX(-50%)',
                 whiteSpace: 'nowrap',
                 pointerEvents: 'none',
-                textAlign: 'right',
+                textAlign: 'center',
               }}
             >
               <div style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(0.55rem, 1.3vw, 0.9rem)',
+                fontSize: 'clamp(0.7rem, 2vw, 1.4rem)',
                 color: chetumal.colorBright,
                 fontWeight: 700,
                 lineHeight: 1.2,
@@ -297,8 +298,8 @@ export default function Slide12MexicoMap(): ReactNode {
               </div>
               <div style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: 'clamp(0.38rem, 0.9vw, 0.6rem)',
-                color: 'rgba(255,255,255,0.75)',
+                fontSize: 'clamp(0.5rem, 1.4vw, 0.9rem)',
+                color: 'rgba(255,255,255,0.9)',
                 lineHeight: 1.2,
                 textShadow: '0 1px 4px rgba(0,0,0,0.8)',
               }}>
@@ -328,7 +329,7 @@ export default function Slide12MexicoMap(): ReactNode {
                 >
                   <div style={{
                     fontFamily: 'var(--font-display)',
-                    fontSize: 'clamp(0.7rem, 1.4vw, 1rem)',
+                    fontSize: 'clamp(0.85rem, 2vw, 1.5rem)',
                     color: chetumal.colorBright,
                     fontWeight: 700,
                   }}>
@@ -336,17 +337,17 @@ export default function Slide12MexicoMap(): ReactNode {
                   </div>
                   <div style={{
                     fontFamily: 'var(--font-mono)',
-                    fontSize: 'clamp(0.5rem, 1vw, 0.75rem)',
+                    fontSize: 'clamp(0.6rem, 1.5vw, 1rem)',
                     color: '#ffffff',
-                    marginTop: '2px',
+                    marginTop: '4px',
                   }}>
                     Gobierno · Servicios · Turismo
                   </div>
                   <div style={{
                     fontFamily: 'var(--font-mono)',
-                    fontSize: 'clamp(0.4rem, 0.8vw, 0.6rem)',
-                    color: 'rgba(255,255,255,0.5)',
-                    marginTop: '4px',
+                    fontSize: 'clamp(0.5rem, 1.2vw, 0.8rem)',
+                    color: 'rgba(255,255,255,0.7)',
+                    marginTop: '6px',
                   }}>
                     La oportunidad está aquí, donde vivimos
                   </div>
@@ -359,11 +360,11 @@ export default function Slide12MexicoMap(): ReactNode {
         {/* ═══ Stats — Paradox storytelling ═══ */}
         <div style={{
           display: 'flex',
-          gap: 'clamp(0.5rem, 2vw, 1rem)',
+          gap: 'clamp(0.75rem, 3vw, 1.5rem)',
           flexWrap: 'wrap',
           justifyContent: 'center',
           alignItems: 'stretch',
-          marginTop: 'clamp(0.5rem, 1.5vw, 0.75rem)',
+          marginTop: 'clamp(1rem, 3vw, 2rem)',
         }}>
           {stats.map((s, i) => (
             <motion.div
@@ -373,14 +374,14 @@ export default function Slide12MexicoMap(): ReactNode {
               transition={{ delay: 1.6 + i * 0.15 }}
               style={{
                 textAlign: 'center',
-                padding: 'clamp(0.4rem, 1vw, 0.6rem) clamp(0.6rem, 1.5vw, 0.9rem)',
+                padding: 'clamp(0.75rem, 2vw, 1.5rem) clamp(1rem, 3vw, 2rem)',
                 background: s.sentiment === 'alert'
                   ? `${s.color}12`
                   : `${s.color}08`,
                 borderRadius: '10px',
                 border: `1px solid ${s.sentiment === 'alert' ? s.color + '40' : s.color + '20'}`,
-                flex: '1 1 120px',
-                maxWidth: '200px',
+                flex: '1 1 130px',
+                maxWidth: '300px',
                 position: 'relative',
                 overflow: 'hidden',
               }}
@@ -389,10 +390,10 @@ export default function Slide12MexicoMap(): ReactNode {
               {s.sentiment === 'alert' && (
                 <div style={{
                   position: 'absolute',
-                  top: '4px',
-                  right: '6px',
+                  top: 'clamp(4px, 1vw, 8px)',
+                  right: 'clamp(6px, 1.5vw, 12px)',
                   fontFamily: 'var(--font-mono)',
-                  fontSize: 'clamp(0.35rem, 0.7vw, 0.5rem)',
+                  fontSize: 'clamp(0.5rem, 1.2vw, 0.8rem)',
                   color: s.color,
                   fontWeight: 700,
                   opacity: 0.8,
@@ -403,7 +404,7 @@ export default function Slide12MexicoMap(): ReactNode {
               )}
               <div style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(1.2rem, 3.5vw, 2.8rem)',
+                fontSize: 'clamp(2rem, 6vw, 4.5rem)',
                 color: s.color,
                 fontWeight: 700,
               }}>
@@ -411,7 +412,7 @@ export default function Slide12MexicoMap(): ReactNode {
               </div>
               <div style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: 'clamp(0.45rem, 1vw, 0.75rem)',
+                fontSize: 'clamp(0.7rem, 1.8vw, 1.2rem)',
                 color: s.sentiment === 'alert' ? s.color : '#ffffff',
                 fontWeight: s.sentiment === 'alert' ? 600 : 400,
               }}>
@@ -428,16 +429,16 @@ export default function Slide12MexicoMap(): ReactNode {
           transition={{ delay: 2.1 }}
           style={{
             textAlign: 'center',
-            marginTop: 'clamp(0.3rem, 1vw, 0.5rem)',
+            marginTop: 'clamp(1rem, 3vw, 2rem)',
             display: 'flex',
             flexDirection: 'column',
-            gap: 'clamp(0.2rem, 0.6vw, 0.35rem)',
+            gap: 'clamp(0.4rem, 1vw, 0.8rem)',
           }}
         >
           <div style={{
             fontFamily: 'var(--font-body)',
-            fontSize: 'clamp(0.6rem, 1.4vw, 1rem)',
-            color: 'rgba(255,255,255,0.7)',
+            fontSize: 'clamp(0.85rem, 2.2vw, 1.6rem)',
+            color: '#ffffff',
             lineHeight: 1.4,
           }}>
             Potencia industrial enorme, pero{' '}
@@ -445,8 +446,8 @@ export default function Slide12MexicoMap(): ReactNode {
           </div>
           <div style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: 'clamp(0.5rem, 1.1vw, 0.8rem)',
-            color: 'rgba(255,255,255,0.45)',
+            fontSize: 'clamp(0.7rem, 1.8vw, 1.2rem)',
+            color: 'rgba(255,255,255,0.85)',
             lineHeight: 1.4,
           }}>
             La inversión tech se concentra en el Bajío y el norte —{' '}

@@ -98,7 +98,11 @@ export default function Slide06Predict({ subStep = 0 }: Slide06PredictProps): Re
   const [sliderVal, setSliderVal] = useState(50);
   const threshold = 65;
   const dataCount = 40 + Math.floor(sliderVal * 0.6);
-  const data = generateData(dataCount, threshold);
+  const [data, setData] = useState<number[]>([]);
+
+  useEffect(() => {
+    setData(generateData(dataCount, threshold));
+  }, [dataCount]);
 
   return (
     <div className="slide">
