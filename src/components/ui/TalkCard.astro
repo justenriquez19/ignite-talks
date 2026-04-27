@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import SlidePreview from './SlidePreview.astro';
 
 interface Props {
   talk: CollectionEntry<'talks'>;
@@ -14,18 +15,18 @@ const formattedDate = new Date(date).toLocaleDateString('es-MX', {
   day: 'numeric',
 });
 
-// Generate gradient based on hero value or fallback
-const gradientMap: Record<string, string> = {
-  'gradient-fire': 'linear-gradient(135deg, #e63620 0%, #ff6b35 50%, #ff4a33 100%)',
-  'gradient-ember': 'linear-gradient(135deg, #ff6b35 0%, #e63620 100%)',
-  'gradient-obsidian': 'linear-gradient(135deg, #1a1a1f 0%, #2a2a30 50%, #111114 100%)',
+// Map hero field to color scheme for SlidePreview
+const schemeMap: Record<string, 'fire' | 'ember' | 'obsidian'> = {
+  'gradient-fire': 'fire',
+  'gradient-ember': 'ember',
+  'gradient-obsidian': 'obsidian',
 };
-
-const cardGradient = gradientMap[hero ?? 'gradient-fire'] ?? gradientMap['gradient-fire'];
+const scheme = schemeMap[hero ?? 'gradient-fire'] ?? 'fire';
 ---
 
 <a href={`/talks/${slug}`} class="talk-card" id={`talk-card-${slug}`} aria-label={`Ver presentación: ${title}`}>
-  <div class="talk-card-hero" style={`background: ${cardGradient};`}>
+  <div class="talk-card-hero">
+    <SlidePreview title={title} subtitle={event} colorScheme={scheme} />
     <div class="talk-card-hero-overlay"></div>
   </div>
 

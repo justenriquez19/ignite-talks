@@ -47,7 +47,7 @@ const layers = [
 ];
 
 export default function Slide18Stack(): ReactNode {
-  const [hovered, setHovered] = useState<number | null>(null);
+  const [selected, setSelected] = useState<number | null>(null);
 
   return (
     <div className="slide">
@@ -86,14 +86,12 @@ export default function Slide18Stack(): ReactNode {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 + i * 0.12 }}
-                onMouseEnter={() => setHovered(i)}
-                onMouseLeave={() => setHovered(null)}
-                onClick={() => setHovered(hovered === i ? null : i)}
+                onClick={() => setSelected(selected === i ? null : i)}
                 style={{
                   width: '100%',
                   padding: 'clamp(0.5rem, 1.5vw, 0.75rem) clamp(0.75rem, 2vw, 1.25rem)',
-                  background: hovered === i ? `${layer.color}15` : 'var(--color-slide-surface)',
-                  border: `1px solid ${hovered === i ? `${layer.color}40` : 'var(--color-slide-border)'}`,
+                  background: selected === i ? `${layer.color}15` : 'var(--color-slide-surface)',
+                  border: `1px solid ${selected === i ? `${layer.color}40` : 'var(--color-slide-border)'}`,
                   borderRadius: '10px',
                   display: 'flex',
                   justifyContent: 'space-between',
@@ -102,14 +100,14 @@ export default function Slide18Stack(): ReactNode {
                   transition: 'all 0.3s ease',
                   outline: 'none',
                   textAlign: 'left',
-                  boxShadow: hovered === i ? `0 0 20px ${layer.color}10` : 'none',
+                  boxShadow: selected === i ? `0 0 20px ${layer.color}10` : 'none',
                 }}
               >
                 <div>
                   <div style={{
                     fontFamily: 'var(--font-display)',
                     fontSize: 'clamp(0.85rem, 1.8vw, 1.5rem)',
-                    color: hovered === i ? layer.color : 'var(--color-ignite-text-primary)',
+                    color: selected === i ? layer.color : 'var(--color-ignite-text-primary)',
                     fontWeight: 600,
                     transition: 'color 0.3s ease',
                   }}>{layer.name}</div>
@@ -140,17 +138,17 @@ export default function Slide18Stack(): ReactNode {
             alignItems: 'center',
           }}>
             <AnimatePresence mode="wait">
-              {hovered !== null && (
+              {selected !== null && (
                 <motion.div
-                  key={hovered}
+                  key={selected}
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.2 }}
                   style={{
                     padding: 'clamp(1rem, 2.5vw, 1.5rem)',
-                    background: `${layers[hovered].color}08`,
-                    border: `1px solid ${layers[hovered].color}25`,
+                    background: `${layers[selected].color}08`,
+                    border: `1px solid ${layers[selected].color}25`,
                     borderRadius: '16px',
                     width: '100%',
                   }}
@@ -158,17 +156,17 @@ export default function Slide18Stack(): ReactNode {
                   <h3 style={{
                     fontFamily: 'var(--font-display)',
                     fontSize: 'clamp(1.1rem, 2.5vw, 2rem)',
-                    color: layers[hovered].color,
+                    color: layers[selected].color,
                     fontWeight: 700,
                     marginBottom: '0.5rem',
-                  }}>{layers[hovered].name}</h3>
+                  }}>{layers[selected].name}</h3>
                   <p style={{
                     fontFamily: 'var(--font-body)',
                     fontSize: 'clamp(0.8rem, 1.7vw, 1.4rem)',
                     color: 'var(--color-ignite-text-primary)',
                     lineHeight: 1.5,
                     marginBottom: 'clamp(0.5rem, 1.5vw, 0.75rem)',
-                  }}>{layers[hovered].detail}</p>
+                  }}>{layers[selected].detail}</p>
                   <span style={{
                     fontFamily: 'var(--font-mono)',
                     fontSize: 'clamp(0.65rem, 1.4vw, 1.2rem)',
@@ -177,13 +175,13 @@ export default function Slide18Stack(): ReactNode {
                     background: 'rgba(255,255,255,0.05)',
                     borderRadius: '6px',
                   }}>
-                    📚 {layers[hovered].module}
+                    📚 {layers[selected].module}
                   </span>
                 </motion.div>
               )}
             </AnimatePresence>
 
-            {hovered === null && (
+            {selected === null && (
               <div style={{
                 width: '100%',
                 textAlign: 'center',

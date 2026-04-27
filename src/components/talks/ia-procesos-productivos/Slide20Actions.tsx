@@ -1,88 +1,25 @@
 import { useState, useEffect, type ReactNode } from 'react';
 import { motion } from 'motion/react';
 
-/* Simple QR Code SVG generator (deterministic pattern for demo) */
-function QRCode({ url, size = 80 }: { url: string; size?: number }) {
-  // Generate a simple hash-based pattern
-  let hash = 0;
-  for (let i = 0; i < url.length; i++) {
-    hash = ((hash << 5) - hash) + url.charCodeAt(i);
-    hash = hash & hash;
-  }
-
-  const modules = 21;
-  const cellSize = size / modules;
-  const cells: boolean[][] = [];
-
-  for (let y = 0; y < modules; y++) {
-    cells[y] = [];
-    for (let x = 0; x < modules; x++) {
-      // Position detection patterns (corners)
-      const inTL = x < 7 && y < 7;
-      const inTR = x >= modules - 7 && y < 7;
-      const inBL = x < 7 && y >= modules - 7;
-
-      if (inTL || inTR || inBL) {
-        const cornerX = inTL ? 0 : inTR ? modules - 7 : 0;
-        const cornerY = inTL ? 0 : inTR ? 0 : modules - 7;
-        const lx = x - cornerX;
-        const ly = y - cornerY;
-        cells[y][x] = lx === 0 || lx === 6 || ly === 0 || ly === 6 ||
-                      (lx >= 2 && lx <= 4 && ly >= 2 && ly <= 4);
-      } else {
-        // Pseudo-random data based on hash + position
-        const seed = Math.abs(hash + x * 31 + y * 17 + x * y * 7);
-        cells[y][x] = (seed % 3) !== 0;
-      }
-    }
-  }
-
-  return (
-    <div className="qr-container">
-      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
-        {cells.map((row, y) =>
-          row.map((cell, x) =>
-            cell ? (
-              <rect
-                key={`${x}-${y}`}
-                x={x * cellSize}
-                y={y * cellSize}
-                width={cellSize}
-                height={cellSize}
-                fill="#111"
-              />
-            ) : null
-          )
-        )}
-      </svg>
-    </div>
-  );
-}
 
 const actions = [
   {
-    title: 'Instala Python y crea tu primer script con IA',
-    description: 'python.org → instalar → escribir tu primer programa',
-    url: 'https://python.org',
+    title: 'Aprende los fundamentos de programación',
+    description: 'Entiende lógica, variables, funciones y estructuras de datos. La base de todo.',
     color: '#00d4ff',
-    emoji: '🐍',
-    hasQR: true,
+    emoji: '📚',
   },
   {
-    title: 'Abre una cuenta en Claude o ChatGPT y rompe cosas',
-    description: 'Experimenta. Pregunta. Equivócate. Aprende.',
-    url: 'https://claude.ai',
+    title: 'Crea tus primeros scripts por tu cuenta',
+    description: 'Automatiza algo real. Rompe cosas. Aprende resolviendo problemas.',
     color: '#a855f7',
-    emoji: '🧪',
-    hasQR: true,
+    emoji: '⚡',
   },
   {
-    title: 'Construye algo que resuelva un problema real de tu comunidad',
-    description: 'El mejor proyecto es el que a ti te importa.',
-    url: '',
+    title: 'Implementa IA con Claude Code o Antigravity',
+    description: 'Usa agentes de código para construir proyectos completos con inteligencia artificial.',
     color: '#ec4899',
-    emoji: '🔥',
-    hasQR: false,
+    emoji: '🤖',
   },
 ];
 
@@ -168,11 +105,7 @@ export default function Slide21Actions(): ReactNode {
                 </div>
               </div>
 
-              {action.hasQR && (
-                <div style={{ flexShrink: 0 }}>
-                  <QRCode url={action.url} size={60} />
-                </div>
-              )}
+
             </motion.div>
           ))}
         </div>

@@ -1,0 +1,163 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  colorScheme?: 'fire' | 'ember' | 'obsidian';
+}
+
+const { title, subtitle, colorScheme = 'fire' } = Astro.props;
+
+/* ─── Color Schemes ─── */
+const schemes: Record<string, {
+  particle: string;
+  line: string;
+  gFrom: string;
+  gVia: string;
+  gTo: string;
+  glow: string;
+  bg: string;
+}> = {
+  fire: {
+    particle: '0,212,255',
+    line: '168,85,247',
+    gFrom: '#f0ece6',
+    gVia: '#00d4ff',
+    gTo: '#a855f7',
+    glow: 'rgba(0,212,255,0.12)',
+    bg: '#0a0a12',
+  },
+  ember: {
+    particle: '255,107,53',
+    line: '230,54,32',
+    gFrom: '#fff0e6',
+    gVia: '#ff6b35',
+    gTo: '#e63620',
+    glow: 'rgba(255,107,53,0.12)',
+    bg: '#120a08',
+  },
+  obsidian: {
+    particle: '180,190,210',
+    line: '100,110,130',
+    gFrom: '#e8e8f0',
+    gVia: '#a0a0c0',
+    gTo: '#c8c8e0',
+    glow: 'rgba(180,190,210,0.08)',
+    bg: '#0c0c10',
+  },
+};
+
+const c = schemes[colorScheme] ?? schemes.fire;
+
+/* ─── Seeded PRNG ─── */
+function hash(s: string): number {
+  let h = 5381;
+  for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0;
+  return Math.abs(h);
+}
+function rng(seed: number): number {
+  const x = Math.sin(seed * 9301 + 49297) * 233280;
+  return x - Math.floor(x);
+}
+
+/* ─── Generate Particles & Connections ─── */
+const W = 400, H = 200, N = 50, CD = 58;
+const base = hash(title);
+
+const pts = Array.from({ length: N }, (_, i) => ({
+  x: +(rng(base + i * 7 + 1) * W).toFixed(1),
+  y: +(rng(base + i * 13 + 2) * H).toFixed(1),
+  r: +(rng(base + i * 17 + 3) * 1.5 + 0.5).toFixed(2),
+  o: +(rng(base + i * 23 + 4) * 0.5 + 0.2).toFixed(2),
+}));
+
+const lines: { x1: number; y1: number; x2: number; y2: number; o: number }[] = [];
+for (let i = 0; i < pts.length; i++) {
+  for (let j = i + 1; j < pts.length; j++) {
+    const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+    const d = Math.sqrt(dx * dx + dy * dy);
+    if (d < CD) lines.push({ x1: pts[i].x, y1: pts[i].y, x2: pts[j].x, y2: pts[j].y, o: +((1 - d / CD) * 0.2).toFixed(3) });
+  }
+}
+
+const grad = `linear-gradient(135deg, ${c.gFrom} 0%, ${c.gVia} 50%, ${c.gTo} 100%)`;
+---
+
+<div class="sp" style={`background-color:${c.bg};`}>
+  <svg class="sp-net" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    {lines.map((l) => (
+      <line x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} stroke={`rgba(${c.line},${l.o})`} stroke-width="0.6" />
+    ))}
+    {pts.map((p) => (
+      <circle cx={p.x} cy={p.y} r={p.r} fill={`rgba(${c.particle},${p.o})`} />
+    ))}
+  </svg>
+
+  <div class="sp-glow" style={`background:radial-gradient(ellipse at center,${c.glow} 0%,transparent 70%);`} aria-hidden="true"></div>
+
+  <div class="sp-content">
+    {subtitle && <span class="sp-label">{subtitle}</span>}
+    <span class="sp-title" style={`background-image:${grad};`}>{title}</span>
+  </div>
+</div>
+
+<style>
+  .sp {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .sp-net {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .sp-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .sp-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 1rem 1.25rem;
+    gap: 0.4rem;
+    text-align: center;
+  }
+
+  .sp-label {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.5rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(200, 210, 230, 0.55);
+    max-width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .sp-title {
+    font-family: var(--font-display, system-ui);
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 1.35;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    max-width: 95%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

@@ -194,7 +194,7 @@ export default function Slide01Title(): ReactNode {
             textShadow: '0 0 12px rgba(0, 212, 255, 0.25)',
           }}
         >
-          Conferencia Magistral — CBTIS 214 × CANACO
+          Conferencia Magistral — CBTIS 214 × CANACO Chetumal
         </motion.div>
 
         <motion.h1

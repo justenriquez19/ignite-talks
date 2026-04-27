@@ -9,7 +9,7 @@ const modules = [
     role: 'Dev Jr',
     salary: '$15-25K MXN',
     color: '#00d4ff',
-    x: 50, y: 10,
+    x: 40, y: 5,
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ const modules = [
     role: 'ML Engineer',
     salary: '$30-50K MXN',
     color: '#a855f7',
-    x: 20, y: 35,
+    x: 8, y: 40,
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ const modules = [
     role: 'AI Trainer',
     salary: '$25-40K MXN',
     color: '#ec4899',
-    x: 80, y: 35,
+    x: 72, y: 40,
   },
   {
     id: 4,
@@ -36,7 +36,7 @@ const modules = [
     role: 'Automation Specialist',
     salary: '$35-55K MXN',
     color: '#f59e0b',
-    x: 30, y: 65,
+    x: 16, y: 78,
   },
   {
     id: 5,
@@ -45,7 +45,7 @@ const modules = [
     role: 'AI Systems Integrator',
     salary: '$40-70K MXN',
     color: '#06d6a0',
-    x: 70, y: 65,
+    x: 56, y: 78,
   },
 ];
 
@@ -65,7 +65,16 @@ export default function Slide16SkillTree(): ReactNode {
 
   return (
     <div className="slide">
-      <div className="slide-inner" style={{ maxWidth: '900px', padding: '0 clamp(1rem, 4vw, 2rem)' }}>
+      <div className="slide-inner" style={{
+        maxWidth: '960px',
+        padding: '0 clamp(1rem, 4vw, 2rem)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100%',
+        gap: 'clamp(0.5rem, 1.5vw, 1rem)',
+      }}>
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="slide-label">
           Tu carrera en contexto
         </motion.div>
@@ -76,9 +85,11 @@ export default function Slide16SkillTree(): ReactNode {
           transition={{ delay: 0.2 }}
           style={{
             fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(1.8rem, 7vw, 5rem)',
+            fontSize: 'clamp(1.4rem, 5vw, 3.2rem)',
             fontWeight: 700,
             textAlign: 'center',
+            lineHeight: 1.1,
+            margin: 0,
           }}
         >
           <span style={{ color: 'var(--neon-green)' }}>Skill Tree</span> — Mapa de Competencias
@@ -88,12 +99,15 @@ export default function Slide16SkillTree(): ReactNode {
         <div style={{
           position: 'relative',
           width: '100%',
-          maxWidth: '700px',
-          aspectRatio: '16/10',
+          maxWidth: '750px',
+          aspectRatio: '16/11',
           margin: '0 auto',
+          flex: '1 1 auto',
+          minHeight: 0,
+          maxHeight: 'clamp(250px, 45vh, 450px)',
         }}>
           {/* Connection lines */}
-          <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
+          <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} preserveAspectRatio="none">
             {connections.map(([from, to], i) => (
               <line
                 key={i}
@@ -121,41 +135,42 @@ export default function Slide16SkillTree(): ReactNode {
                 top: `${mod.y}%`,
                 left: `${mod.x}%`,
                 transform: 'translate(-50%, -50%)',
-                padding: 'clamp(0.4rem, 1.2vw, 0.625rem) clamp(0.6rem, 1.5vw, 1rem)',
+                padding: 'clamp(0.3rem, 1vw, 0.5rem) clamp(0.5rem, 1.2vw, 0.8rem)',
                 background: i < lit ? `${mod.color}12` : 'var(--color-slide-surface)',
                 border: `1.5px solid ${i < lit ? `${mod.color}50` : 'var(--color-slide-border)'}`,
-                borderRadius: '14px',
+                borderRadius: 'clamp(8px, 1.2vw, 14px)',
                 textAlign: 'center',
-                minWidth: '120px',
+                minWidth: 'clamp(90px, 14vw, 140px)',
                 zIndex: 2,
                 boxShadow: i < lit ? `0 0 20px ${mod.color}15` : 'none',
                 transition: 'background 0.5s ease, border 0.5s ease',
+                whiteSpace: 'nowrap',
               }}
             >
               <div style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: 'clamp(0.5rem, 1.1vw, 0.9rem)',
+                fontSize: 'clamp(0.45rem, 0.9vw, 0.75rem)',
                 color: mod.color,
                 fontWeight: 600,
-                marginBottom: '2px',
+                marginBottom: '1px',
               }}>{mod.name}</div>
               <div style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(0.7rem, 1.5vw, 1.25rem)',
+                fontSize: 'clamp(0.65rem, 1.3vw, 1.1rem)',
                 color: 'var(--color-ignite-text-primary)',
                 fontWeight: 600,
               }}>{mod.topic}</div>
               <div style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: 'clamp(0.5rem, 1.1vw, 0.9rem)',
+                fontSize: 'clamp(0.45rem, 0.9vw, 0.75rem)',
                 color: '#ffffff',
-                marginTop: '2px',
+                marginTop: '1px',
               }}>→ {mod.role}</div>
               <div style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: 'clamp(0.45rem, 1vw, 0.85rem)',
+                fontSize: 'clamp(0.4rem, 0.85vw, 0.7rem)',
                 color: mod.color,
-                marginTop: '2px',
+                marginTop: '1px',
               }}>{mod.salary}</div>
             </motion.div>
           ))}
@@ -167,9 +182,10 @@ export default function Slide16SkillTree(): ReactNode {
           transition={{ delay: 4 }}
           style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: 'clamp(0.7rem, 1.4vw, 1.4rem)',
+            fontSize: 'clamp(0.65rem, 1.3vw, 1.2rem)',
             color: '#ffffff',
             textAlign: 'center',
+            margin: 0,
           }}
         >
           Lo que aprenden se mapea directamente a roles reales
