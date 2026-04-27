@@ -1,7 +1,7 @@
 ---
 import TalkLayout from '../../layouts/TalkLayout.astro';
-import Icon from '../../components/ui/Icon.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
+import TalkLoader from '../../components/talks/ia-procesos-productivos/TalkLoader';
 
 export async function getStaticPaths() {
   const talks = await getCollection('talks');
@@ -20,52 +20,17 @@ const { title, description, slug, slideCount } = talk.data;
 ---
 
 <TalkLayout title={title} description={description} slug={slug} slideCount={slideCount}>
-  <div id="slide-shell-root" data-slug={slug} data-slide-count={slideCount}>
-    <!-- SlideShell React island will mount here -->
-    <div class="slide-placeholder">
-      <div class="slide-placeholder-content">
-        <h2 class="slide-placeholder-title">{title}</h2>
-        <p class="slide-placeholder-desc">{description}</p>
-        <p class="slide-placeholder-info">
-          {slideCount} slides — Slides coming soon <Icon name="fire" size={16} />
-        </p>
-      </div>
+  {slug === 'ia-procesos-productivos' && (
+    <div id="talk-loader-root">
+      <TalkLoader client:load />
     </div>
-  </div>
+  )}
 </TalkLayout>
 
 <style>
-  .slide-placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  #talk-loader-root {
     width: 100%;
     height: 100vh;
-    padding: 2rem;
-  }
-
-  .slide-placeholder-content {
-    text-align: center;
-    max-width: 600px;
-  }
-
-  .slide-placeholder-title {
-    font-family: var(--font-display);
-    font-size: clamp(1.75rem, 4vw, 3rem);
-    color: var(--color-ignite-text-primary);
-    margin-bottom: 1rem;
-  }
-
-  .slide-placeholder-desc {
-    font-size: 1.125rem;
-    color: var(--color-ignite-text-secondary);
-    margin-bottom: 1.5rem;
-    max-width: none;
-  }
-
-  .slide-placeholder-info {
-    font-family: var(--font-mono);
-    font-size: 0.875rem;
-    color: var(--color-ignite-text-muted);
+    position: relative;
   }
 </style>

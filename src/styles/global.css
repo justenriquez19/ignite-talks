@@ -45,6 +45,22 @@
   --color-ignite-glow: rgba(230, 54, 32, 0.15);
   --color-ignite-glow-strong: rgba(230, 54, 32, 0.3);
 
+  /* Neon / Cyber Palette (talk-specific) */
+  --neon-cyan: #00d4ff;
+  --neon-cyan-dim: #0891b2;
+  --neon-purple: #a855f7;
+  --neon-purple-dim: #7c3aed;
+  --neon-pink: #ec4899;
+  --neon-pink-dim: #db2777;
+  --neon-green: #06d6a0;
+  --neon-amber: #f59e0b;
+  --neon-red: #ef4444;
+  --color-slide-bg: #0a0a0f;
+  --color-slide-surface: #12121a;
+  --color-slide-surface-raised: #1e1e2a;
+  --color-slide-border: #2a2a3a;
+  --color-slide-text-dim: #64648a;
+
   /* Typography */
   --font-display: 'Clash Display', system-ui, sans-serif;
   --font-body: 'Satoshi', system-ui, sans-serif;
@@ -202,6 +218,13 @@ code, pre {
 
 .text-gradient-fire {
   background: linear-gradient(135deg, var(--color-ignite-fire), var(--color-ignite-ember), var(--color-ignite-fire-bright));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-neon {
+  background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

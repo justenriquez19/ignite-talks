@@ -1,15 +1,41 @@
-import { useState, useEffect, useCallback, type ReactNode } from 'react';
+import { useState, useEffect, useCallback, useRef, cloneElement, isValidElement, type ReactNode, type ReactElement } from 'react';
 import { KEYBOARD_SHORTCUTS } from '../../lib/data';
 
 interface SlideShellProps {
   slides: ReactNode[];
   talkSlug: string;
   totalSlides: number;
+  /**
+   * Map of slide index → number of extra sub-steps before advancing.
+   * E.g. { 2: 2 } means slide index 2 has 2 sub-steps:
+   *   - Enter slide → subStep=0
+   *   - First tick  → subStep=1
+   *   - Second tick → advance to next slide
+   */
+  subStepsMap?: Record<number, number>;
 }
 
-export default function SlideShell({ slides, talkSlug, totalSlides }: SlideShellProps): ReactNode {
+export default function SlideShell({ slides, talkSlug, totalSlides, subStepsMap = {} }: SlideShellProps): ReactNode {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [subStep, setSubStep] = useState(0);
   const [direction, setDirection] = useState<'next' | 'prev'>('next');
+
+  /**
+   * Mount keys: each slide gets a counter that increments every time
+   * the slide becomes active. By using this as the React `key` for
+   * the slide wrapper, React fully unmounts/remounts the slide
+   * component, resetting all internal state and re-triggering all
+   * useEffect hooks and Framer Motion initial→animate transitions.
+   */
+  const [mountKeys, setMountKeys] = useState<number[]>(() =>
+    Array.from({ length: totalSlides }, (_, i) => (i === 0 ? 1 : 0))
+  );
+  const prevSlideRef = useRef(0);
+
+  /** How many sub-steps does a given slide have? Default = 0 (no sub-steps). */
+  const getMaxSubSteps = useCallback((slideIndex: number) => {
+    return subStepsMap[slideIndex] ?? 0;
+  }, [subStepsMap]);
 
   // Read initial slide from URL hash
   useEffect(() => {
@@ -20,10 +46,30 @@ export default function SlideShell({ slides, talkSlug, totalSlides }: SlideShell
         const slideIndex = parseInt(match[1], 10) - 1;
         if (slideIndex >= 0 && slideIndex < totalSlides) {
           setCurrentSlide(slideIndex);
+          setSubStep(0);
+          // Mark this slide as needing a mount
+          setMountKeys(prev => {
+            const next = [...prev];
+            next[slideIndex] = (next[slideIndex] || 0) + 1;
+            return next;
+          });
+          prevSlideRef.current = slideIndex;
         }
       }
     }
   }, [totalSlides]);
+
+  // Increment mount key when navigating to a new slide
+  useEffect(() => {
+    if (currentSlide !== prevSlideRef.current) {
+      setMountKeys(prev => {
+        const next = [...prev];
+        next[currentSlide] = (next[currentSlide] || 0) + 1;
+        return next;
+      });
+      prevSlideRef.current = currentSlide;
+    }
+  }, [currentSlide]);
 
   // Update URL hash and progress bar
   useEffect(() => {
@@ -48,22 +94,35 @@ export default function SlideShell({ slides, talkSlug, totalSlides }: SlideShell
     if (index >= 0 && index < totalSlides) {
       setDirection(index > currentSlide ? 'next' : 'prev');
       setCurrentSlide(index);
+      setSubStep(0);
     }
   }, [currentSlide, totalSlides]);
 
   const nextSlide = useCallback(() => {
-    if (currentSlide < totalSlides - 1) {
+    const maxSub = getMaxSubSteps(currentSlide);
+    if (subStep < maxSub) {
+      // Still have sub-steps to reveal
+      setSubStep((prev) => prev + 1);
+    } else if (currentSlide < totalSlides - 1) {
+      // All sub-steps consumed, advance to next slide
       setDirection('next');
       setCurrentSlide((prev) => prev + 1);
+      setSubStep(0);
     }
-  }, [currentSlide, totalSlides]);
+  }, [currentSlide, totalSlides, subStep, getMaxSubSteps]);
 
   const prevSlide = useCallback(() => {
-    if (currentSlide > 0) {
+    if (subStep > 0) {
+      // Go back within sub-steps
+      setSubStep((prev) => prev - 1);
+    } else if (currentSlide > 0) {
       setDirection('prev');
-      setCurrentSlide((prev) => prev - 1);
+      const prevIndex = currentSlide - 1;
+      setCurrentSlide(prevIndex);
+      // When going back, show the slide fully revealed
+      setSubStep(getMaxSubSteps(prevIndex));
     }
-  }, [currentSlide]);
+  }, [currentSlide, subStep, getMaxSubSteps]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -137,33 +196,61 @@ export default function SlideShell({ slides, talkSlug, totalSlides }: SlideShell
         overflow: 'hidden',
       }}
     >
-      {slides.map((slide, index) => (
-        <div
-          key={index}
-          role="group"
-          aria-roledescription="slide"
-          aria-label={`Slide ${index + 1} de ${totalSlides}`}
-          aria-hidden={index !== currentSlide}
-          style={{
-            position: 'absolute',
-            inset: 0,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            opacity: index === currentSlide ? 1 : 0,
-            transform: index === currentSlide
-              ? 'translateX(0)'
-              : index < currentSlide
-                ? 'translateX(-30px)'
-                : 'translateX(30px)',
-            transition: 'opacity 0.3s ease-out, transform 0.3s ease-out',
-            pointerEvents: index === currentSlide ? 'auto' : 'none',
-            visibility: index === currentSlide ? 'visible' : 'hidden',
-          }}
-        >
-          {slide}
-        </div>
-      ))}
+      {slides.map((slide, index) => {
+        const isActive = index === currentSlide;
+
+        // Only mount the current slide — all others are unmounted.
+        // This guarantees that on every navigation, the slide component
+        // fully remounts: useState resets, useEffect re-runs, and
+        // Framer Motion initial→animate transitions replay.
+        if (!isActive) {
+          return (
+            <div
+              key={`shell-${index}`}
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`Slide ${index + 1} de ${totalSlides}`}
+              aria-hidden
+              style={{
+                position: 'absolute',
+                inset: 0,
+                opacity: 0,
+                pointerEvents: 'none',
+                visibility: 'hidden',
+              }}
+            />
+          );
+        }
+
+        // Inject subStep prop into slides that accept it
+        const renderedSlide = isValidElement(slide) && index in subStepsMap
+          ? cloneElement(slide as ReactElement<{ subStep?: number }>, { subStep })
+          : slide;
+
+        return (
+          <div
+            key={`slide-${index}-${mountKeys[index]}`}
+            role="group"
+            aria-roledescription="slide"
+            aria-label={`Slide ${index + 1} de ${totalSlides}`}
+            aria-hidden={false}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              opacity: 1,
+              transform: 'translateX(0)',
+              transition: 'opacity 0.3s ease-out, transform 0.3s ease-out',
+              pointerEvents: 'auto',
+              visibility: 'visible',
+            }}
+          >
+            {renderedSlide}
+          </div>
+        );
+      })}
     </div>
   );
 }
