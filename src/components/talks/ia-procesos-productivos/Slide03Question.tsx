@@ -24,7 +24,7 @@ export default function Slide03Question({ subStep = 0 }: Slide03QuestionProps): 
                 }}
                 style={{
                   fontFamily: 'var(--font-display)',
-                  fontSize: 'clamp(1.6rem, 7vw, 7rem)',
+                  fontSize: 'clamp(1.6rem, 5vw, 5rem)',
                   fontWeight: 600,
                   color: 'var(--color-ignite-text-primary)',
                   lineHeight: 1.2,
@@ -65,7 +65,7 @@ export default function Slide03Question({ subStep = 0 }: Slide03QuestionProps): 
                   transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
                   style={{
                     fontFamily: 'var(--font-display)',
-                    fontSize: 'clamp(1.8rem, 8vw, 8rem)',
+                    fontSize: 'clamp(1.8rem, 5.5vw, 5.5rem)',
                     fontWeight: 700,
                     lineHeight: 1.2,
                   }}
@@ -80,7 +80,7 @@ export default function Slide03Question({ subStep = 0 }: Slide03QuestionProps): 
                   transition={{ duration: 0.9, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
                   style={{
                     fontFamily: 'var(--font-mono)',
-                    fontSize: 'clamp(0.85rem, 2.4vw, 2rem)',
+                    fontSize: 'clamp(0.85rem, 2vw, 1.5rem)',
                     color: 'var(--color-slide-text-dim)',
                     marginTop: 'clamp(0.75rem, 2vw, 2rem)',
                     letterSpacing: '0.05em',

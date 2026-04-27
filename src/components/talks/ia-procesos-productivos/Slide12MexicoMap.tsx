@@ -70,7 +70,7 @@ export default function Slide12MexicoMap(): ReactNode {
           transition={{ delay: 0.2 }}
           style={{
             fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(2rem, 8vw, 6rem)',
+            fontSize: 'clamp(2rem, 5vw, 4rem)',
             fontWeight: 700,
             textAlign: 'center',
             color: '#ffffff',
@@ -404,7 +404,7 @@ export default function Slide12MexicoMap(): ReactNode {
               )}
               <div style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(2rem, 6vw, 4.5rem)',
+                fontSize: 'clamp(1.8rem, 4vw, 3rem)',
                 color: s.color,
                 fontWeight: 700,
               }}>
@@ -412,7 +412,7 @@ export default function Slide12MexicoMap(): ReactNode {
               </div>
               <div style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: 'clamp(0.7rem, 1.8vw, 1.2rem)',
+                fontSize: 'clamp(0.7rem, 1.5vw, 1.1rem)',
                 color: s.sentiment === 'alert' ? s.color : '#ffffff',
                 fontWeight: s.sentiment === 'alert' ? 600 : 400,
               }}>
@@ -437,7 +437,7 @@ export default function Slide12MexicoMap(): ReactNode {
         >
           <div style={{
             fontFamily: 'var(--font-body)',
-            fontSize: 'clamp(0.85rem, 2.2vw, 1.6rem)',
+            fontSize: 'clamp(0.85rem, 1.8vw, 1.4rem)',
             color: '#ffffff',
             lineHeight: 1.4,
           }}>
@@ -446,7 +446,7 @@ export default function Slide12MexicoMap(): ReactNode {
           </div>
           <div style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: 'clamp(0.7rem, 1.8vw, 1.2rem)',
+            fontSize: 'clamp(0.7rem, 1.4vw, 1.1rem)',
             color: 'rgba(255,255,255,0.85)',
             lineHeight: 1.4,
           }}>
