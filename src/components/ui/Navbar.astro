@@ -1,10 +1,14 @@
 ---
+import Icon from "./Icon.astro";
+
 interface Props {
   showBackLink?: boolean;
   talkTitle?: string;
 }
 
 const { showBackLink = false, talkTitle } = Astro.props;
+const pathname = Astro.url.pathname;
+const isIndex = pathname === '/' || pathname === '/index.html' || pathname === '';
 ---
 
 <nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
@@ -27,6 +31,23 @@ const { showBackLink = false, talkTitle } = Astro.props;
       </svg>
       <span class="navbar-wordmark">IGNITE<span class="navbar-wordmark-talks">TALKS</span></span>
     </a>
+
+    {isIndex && (
+      <div class="navbar-actions">
+        <a href="/justme" class="nav-connect-link" aria-label="Sobre Justo Enríquez">
+          <span class="nav-connect-link-icon"><Icon name="user" size={16} /></span>
+          <span class="nav-connect-link-label">Sobre mí</span>
+        </a>
+        <a href="https://github.com/justenriquez19" target="_blank" rel="noopener noreferrer" class="nav-connect-link" aria-label="GitHub">
+          <span class="nav-connect-link-icon"><Icon name="github" size={16} /></span>
+          <span class="nav-connect-link-label">GitHub</span>
+        </a>
+        <a href="https://www.linkedin.com/in/justo-enriquez/" target="_blank" rel="noopener noreferrer" class="nav-connect-link" aria-label="LinkedIn">
+          <span class="nav-connect-link-icon"><Icon name="linkedin" size={16} /></span>
+          <span class="nav-connect-link-label">LinkedIn</span>
+        </a>
+      </div>
+    )}
 
     {showBackLink && talkTitle && (
       <span class="navbar-talk-title">{talkTitle}</span>
@@ -94,6 +115,46 @@ const { showBackLink = false, talkTitle } = Astro.props;
     white-space: nowrap;
   }
 
+  .navbar-actions {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .nav-connect-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--color-ignite-surface);
+    border: 1px solid var(--color-ignite-border);
+    border-radius: var(--radius-card);
+    text-decoration: none;
+    transition:
+      border-color var(--duration-default) var(--ease-default),
+      box-shadow var(--duration-default) var(--ease-default),
+      transform var(--duration-default) var(--ease-default);
+  }
+
+  .nav-connect-link:hover {
+    border-color: var(--color-ignite-fire);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+  }
+
+  .nav-connect-link-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-ignite-fire-bright);
+  }
+
+  .nav-connect-link-label {
+    font-size: 0.875rem;
+    color: var(--color-ignite-text-primary);
+    font-weight: 500;
+  }
+
   @media (max-width: 768px) {
     .navbar {
       padding: 0.75rem 1rem;
@@ -110,6 +171,18 @@ const { showBackLink = false, talkTitle } = Astro.props;
 
     .navbar-wordmark {
       font-size: 1rem;
+    }
+
+    .nav-connect-link-label {
+      display: none;
+    }
+
+    .nav-connect-link {
+      padding: 0.5rem;
+    }
+
+    .navbar-actions {
+      gap: 0.5rem;
     }
   }
 </style>

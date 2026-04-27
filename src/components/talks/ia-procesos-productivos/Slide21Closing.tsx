@@ -327,10 +327,30 @@ export default function Slide21Closing(): ReactNode {
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
             textAlign: 'center',
+            margin: 0,
           }}
         >
           ¡Gracias!
         </motion.h1>
+
+        {/* Q&A Subtitle */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(1.5rem, 4vw, 3rem)',
+            fontWeight: 500,
+            color: 'rgba(255, 255, 255, 0.8)',
+            textAlign: 'center',
+            margin: 0,
+            marginTop: '-0.5rem',
+            letterSpacing: '0.02em',
+          }}
+        >
+          ¿Preguntas?
+        </motion.h2>
 
         <motion.div
           initial={{ opacity: 0 }}
